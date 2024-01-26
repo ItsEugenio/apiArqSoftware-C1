@@ -7,7 +7,6 @@ export class GetAllUserUseCase {
   async run(): Promise<User[] | null> {
     try {
       const user = await this.userRepository.getAll();
-      console.log(user);
       return user;
     } catch (error) {
       return null;

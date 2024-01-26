@@ -10,7 +10,6 @@ export class GetAllUserController {
       const users = await this.getAllUserUseCase.run();
       console.log(users);
       if (users)
-        //Code HTTP : 200 -> Consulta exitosa
         res.status(200).send({
           status: "success",
           data: users.map((user: any) => {
