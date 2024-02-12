@@ -1,15 +1,26 @@
 import express from "express";
 
-import { createProductController } from "./dependencies";
-import { getAllProductController } from "./dependencies";
+import { getAllProductController,createProductController } from "./dependencies";
 
 export const productRouter = express.Router();
 
-productRouter.get(
-  "/",
-  getAllProductController.run.bind(getAllProductController)
-);
-productRouter.post(
-  "/",
-  createProductController.run.bind(createProductController)
-);
+productRouter.get("/", (req, res) => {
+  getAllProductController.run(req, res)
+    .then(() => {
+     return null;
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    });
+});
+productRouter.post("/", (req, res) => {
+  createProductController.run(req, res)
+    .then(() => {
+     return null;
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    });
+});

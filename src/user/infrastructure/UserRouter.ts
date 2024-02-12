@@ -1,15 +1,37 @@
 import express from "express";
 
-import { createUserController } from "./dependencies";
-import { getAllUserController } from "./dependencies";
+import { getAllUserController,createUserController,getByIdUserController } from "./dependencies";
 
 export const userRouter = express.Router();
 
-userRouter.get(
-  "/",
-  getAllUserController.run.bind(getAllUserController)
-);
-userRouter.post(
-  "/",
-  createUserController.run.bind(createUserController)
-);
+userRouter.get("/", (req, res) => {
+  getAllUserController.run(req, res)
+    .then(() => {
+     return null;
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error interno del servidor');
+    });
+});
+userRouter.post("/", (req, res) => {
+  createUserController.run(req, res)
+    .then(() => {
+     return null;
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error interno del servidor');
+    });
+});
+userRouter.get("/:id", (req, res) => {
+  getByIdUserController.run(req, res)
+    .then(() => {
+     return null;
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error interno del servidor');
+    });
+});
+

@@ -26,7 +26,6 @@ export class GetAllUserController {
           msn: "Ocurrio algún problema",
         });
     } catch (error) {
-      //Code HTTP : 204 Sin contenido
       res.status(204).send({
         status: "error",
         data: "Ocurrio un error",

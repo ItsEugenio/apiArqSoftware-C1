@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import { CreateProductUseCase } from "../../application/CreateProductUseCase";
-//import { Product } from "../../domain/Product";
 
 export class CreateProductController {
   constructor(readonly createProductUseCase: CreateProductUseCase) {}
